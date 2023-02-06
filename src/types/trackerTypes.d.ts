@@ -6,10 +6,12 @@ type Day = {
   sleepQuality: number;
 };
 
+type Entry = Array<Day>;
+
 type Tracker = {
   name: string;
   days: Day[];
-  entry: number;
+  entry: Entry;
 };
 
 type TrackerManager = Record<string, Tracker>;
