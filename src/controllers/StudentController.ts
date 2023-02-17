@@ -1,22 +1,13 @@
 import { Request, Response } from 'express';
 import { getStudentData,
          getStudent,
-         addstudent,
-         calcFinalScore,
+         addStudent,
+         calculateFinalExamScore,
          getLetterGrade,
          updateStudentGrade} from '../models/StudentModels';
 
 function getAllStudents(req: Request, res: Response): void {
   res.json(getStudentData());
-}
-
-function validateWeight(assignments: CourseGrades): boolean {
-  let sum = assignments.finalExamWeight;
-
-  for (const weight of assignments.assignmentWeights) {
-    sum += weight.weight;
-  }
-  return sum == 100;
 }
 
 function createNewStudent(req: Request, res: Response): void {
@@ -53,16 +44,17 @@ function getFinalExamScores(req: Request, res: Response): void {
   }
 
   const { currentAverage, weights } = student;
+
   const finalScores: FinalExamScores = {
-    ForA: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 98),
-    ForB: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 88),
-    ForC: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 78),
-    ForD: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 68),
+    forA: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 90),
+    forB: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 80),
+    forC: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 70),
+    forD: calculateFinalExamScore(currentAverage, weights.finalExamWeight, 60),
   };
   res.json(finalScores);
 }
 
-function calcFinalScore(req: Request, res: Response): void {
+function calculateFinalExamScore(req: Request, res: Response): void {
   const { studentName } = req.params as StudentNameParams;
 
   const student = getStudent(studentName);
@@ -103,6 +95,6 @@ export default {
   createNewStudent,
   getStudentByName,
   getFinalExamScores,
-  calcFinalScore,
+  calculateFinalExamScore,
   updateGrade
 };

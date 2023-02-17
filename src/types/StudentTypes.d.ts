@@ -7,6 +7,8 @@ type CourseGrade = {
   name: string;
   weight: number;
   grade: number;
+  assignmentWeights: number;
+  finalExamWeight: number;
 };
 
 type Student = {
@@ -21,7 +23,7 @@ type NewStudentRequest = {
 };
 
 type AssignmentGrade = {
-  grade = number;
+  grade: number;
 };
 
 type FinalGrade = {
@@ -30,10 +32,10 @@ type FinalGrade = {
 };
 
 type FinalExamScores = {
-  ForA: number;
-  ForB: number;
-  ForC: number;
-  ForD: number;
+  forA: number;
+  forB: number;
+  forC: number;
+  forD: number;
 }
 
 type StudentNameParams = {
@@ -42,7 +44,7 @@ type StudentNameParams = {
 
 type GradeUpdateParams = {
   studentName: string;
-  asignmentName: string;
+  assignmentName: string;
 };
 
 type StudentManager = Record<string, Student>;

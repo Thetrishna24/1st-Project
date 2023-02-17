@@ -16,7 +16,7 @@ app.get('/api/students', StudentController.getAllStudents);
 app.post('/api/students', StudentController.createNewStudent);
 app.get('/api/students/:studentName/', StudentController.getStudentByName);
 app.get('/api/students/:studentName/finalExam', StudentController.getFinalExamScores);
-app.post('/api/students/:studentName/finalExam', StudentController.calcFinalExamScore);
+app.post('/api/students/:studentName/finalExam', StudentController.calculateFinalExamScore);
 app.post('/api/students/:studentName/grades/:assignmentName', StudentController.updateGrade);
 
 app.listen(PORT, () => {
